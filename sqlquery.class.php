@@ -640,10 +640,6 @@ class SQLRow
 	}
 }
 
-// This class has been taken from
-// http://kuwamoto.org/2007/12/17/improved-pluralizing-in-php-actionscript-and-ror
-// Type: MIT License
-// Changes: A few changes to add custom irregularWords from config/inflection.php
 class Inflection
 {
     static $plural = array(
@@ -726,13 +722,13 @@ class Inflection
 
     public static function pluralize( $string )
     {
-		// save some time in the case that singular and plural are the same
+	// save some time in the case that singular and plural are the same
         if( in_array( strtolower( $string ), self::$uncountable ) )
 		{
             return $string;
 		}
-	    
-        // check for irregular singular forms
+		
+         // check for irregular singular forms
         foreach( self::$irregular as $pattern => $result )
         {
             $pattern = '/' . $pattern . '$/i';
@@ -757,13 +753,13 @@ class Inflection
 
     public static function singularize( $string )
     {	
-		// save some time in the case that singular and plural are the same
+	 // save some time in the case that singular and plural are the same
         if( in_array( strtolower( $string ), self::$uncountable ) )
-		{
+	{
             return $string;
-		}
-	    
-		// check for irregular plural forms
+	}
+		
+	// check for irregular plural forms
         foreach( self::$irregular as $result => $pattern )
         {
             $pattern = '/' . $pattern . '$/i';
