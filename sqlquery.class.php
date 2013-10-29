@@ -412,7 +412,7 @@ class SQLResult
 		$vals = array();
 		while( $row = $this->next() )
 		{
-			if( isset( $this->$table ) && isset( $this->$table->$field ) && ( $val = $this->$table->$field ) != "" )
+			if( isset( $row->$table->$field ) && ( $val = $row->$table->$field ) != "" )
 			{
 				array_push( $vals, $val );
 			}
