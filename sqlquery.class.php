@@ -43,7 +43,7 @@ class SQLQuery
 			array_shift( $params );
 		}
 		
-		$return = $this->_dbObj->query( $query, DBH_OBJ_DEFAULT, $params );
+		$return = $this->_dbObj->query( $query, true, $params );
 		
 		return $return;
 	}
@@ -99,15 +99,7 @@ abstract class SQLHandle implements SQLConn
 	
 	protected function put_error( $msg )
     {
-	    if( ENVIRONMENT == "LIVE" )
-		{
-			error_log( $msg );
-		}
-		else
-		{
-			error_log( $msg );
-		}
-		
+	    error_log( $msg );
 		return;
     }
 }
@@ -410,7 +402,7 @@ class SQLResult
 		return count( $this->_results );
 	}
 	
-	public function serch( $table, $field = "" )
+	public function search( $table, $field = "" )
 	{
 		// get position, then go to the beginning
 		$pos = $this->_pos;
