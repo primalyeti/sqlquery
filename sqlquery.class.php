@@ -132,8 +132,13 @@ class PDOConn extends SQLHandle
 
 	public function clean( $string, $type = "str" )
 	{
+		if( get_magic_quotes_gpc() )
+		{
+			$toReturn = stripslashes( $toReturn );
+		}
+		
 		$toReturn = $this->_dbHandle->quote( $string, PDO::PARAM_STR );
-	
+		
 		switch( $type )
 		{
 			case "bool":
@@ -219,6 +224,11 @@ class PDOConn extends SQLHandle
 					{
 						$data_type = "str";
 					}
+				}
+				
+				if( get_magic_quotes_gpc() )
+				{
+					$value = stripslashes( $value );
 				}
 				
 				if( $results->get_stmt()->bindValue( $parameter, $value, constant( "PDO::PARAM_" . strtoupper( $data_type ) ) ) === false )
