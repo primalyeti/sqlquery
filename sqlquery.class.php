@@ -1,5 +1,4 @@
 <?
-<?
 class SQLQuery
 {
 	protected $_dbObj = false;
@@ -918,3 +917,4 @@ class Inflection
 		}
     }
 }
+?>
